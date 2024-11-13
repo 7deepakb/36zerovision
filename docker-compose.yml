@@ -2,10 +2,22 @@ version: "3.8"
 
 services:
   # Todo Frontend
-  
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./todo-frontend
+      target: development
+    command: npm run start
+    volumes:
+      - ./todo-frontend:/deepak/frontend/src/app
+      - /deepak/frontend/src/app/node_modules
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
 
   # Todo Backend API
-  api:
+  backend:
     build:
       dockerfile: Dockerfile
       context: ./todo-backend
@@ -20,7 +32,6 @@ services:
       - postgres
     environment:
       DATABASE_URL: postgres://user:password@postgres:5432/db
-      JWT_SECRET: hlaskdhaio1237891aa
     ports:
       - "3000:3000"
 
