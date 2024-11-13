@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { UserService } from "../../services/user-service/user.service";
-import { Router } from "@angular/router";
-import { tap } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../../services/user-service/user.service";
+import {Router} from "@angular/router";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,9 @@ export class LoginComponent {
       this.userService.login({
         email: this.email.value,
         password: this.password.value
-      }).subscribe();
+      }).pipe(
+        tap(() => this.router.navigate(['../../private/todo-list']))
+      ).subscribe();
     }
   }
 
