@@ -1,0 +1,8 @@
+<div class="item" [ngClass]="{
+    'priorityLow': item?.priority === 'LOW',
+    'priorityMedium': item?.priority === 'MEDIUM',
+    'priorityHigh': item?.priority === 'HIGH'
+  }">
+    <h3 [ngClass]="{'completed': item?.status === 'COMPLETED'}">{{item?.title}}</h3>
+    <p [ngClass]="{'completed': item?.status === 'COMPLETED'}">{{item?.description}}</p>
+  </div>

@@ -1,0 +1,20 @@
+.item {
+    padding: 20px 10px;
+    border-left: solid 5px;
+  }
+  
+  .priorityLow {
+    border-left-color: green;
+  }
+  
+  .priorityMedium {
+    border-left-color: blue;
+  }
+  
+  .priorityHigh {
+    border-left-color: red;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+  }
