@@ -5,7 +5,7 @@ import { LoginResponseI, UserI } from '../user.interface';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { LoginUserDto } from '../dto/login-user.dto';
 
-@Controller('users')
+@Controller('user')
 export class UserController {
   
   constructor(private readonly userService: UserService, private dtoHelperService: DtoHelperService,) {}
