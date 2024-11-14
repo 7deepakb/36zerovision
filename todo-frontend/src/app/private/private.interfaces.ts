@@ -15,7 +15,6 @@ export interface TodoItem {
 
 export interface CreateTodoFormGroup {
   priority: FormControl<Priority | null>;
-  text: FormControl<string | null>;
   description: FormControl<string | null>;
   title: FormControl<string | null>;
   status: FormControl<Status | null>;

@@ -4,6 +4,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag
 import {TodoItem} from "../../private.interfaces";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {Observable, tap} from "rxjs";
+import {CreateTodoComponent} from "../create-todo/create-todo.component";
 
 @Component({
   selector: 'app-todo-list',
@@ -12,6 +13,8 @@ import {Observable, tap} from "rxjs";
 })
 
 export class TodoListComponent implements OnInit{
+
+  createTodoComponentDialogRef: MatDialogRef<CreateTodoComponent> | undefined;
 
   pendingItems: TodoItem[] = [];
   inProgressItems: TodoItem[] = [];
@@ -50,6 +53,13 @@ export class TodoListComponent implements OnInit{
 
     const updatedItem: TodoItem = event.container.data[event.currentIndex];
     this.todoService.updateTodo(updatedItem, event.container.id);
+  }
+
+  onShowCreateTodoDialog() {
+    this.createTodoComponentDialogRef = this.matDialog.open(CreateTodoComponent, {
+      minHeight: '400px',
+      minWidth: '300px'
+    });
   }
 
 }

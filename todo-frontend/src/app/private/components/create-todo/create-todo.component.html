@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="onCreateTodo()">
+
+    <h2>New Todo Item</h2>
+  
+    <mat-form-field>
+      <label for="title">Title</label>
+      <input id="title" matInput placeholder="Title" formControlName="title">
+      <mat-error *ngIf="title.touched && title.hasError('required')">Title is required</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <label for="description">Description</label>
+      <input id="description" matInput placeholder="Description" formControlName="description">
+      <mat-error *ngIf="description.touched && description.hasError('required')">Description is required</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <label>Status</label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let s of statusValues" [value]="s">{{s}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <label>Priority</label>
+        <mat-select formControlName="priority">
+          <mat-option *ngFor="let p of priorityValues" [value]="p">{{p}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+    <mat-hint *ngIf="!form.valid">Please fill out all information correctly!</mat-hint>
+  
+    <div>
+      <button mat-button type="submit" [disabled]="!form.valid">Create Todo Item</button>
+    </div>
+  
+  </form>
