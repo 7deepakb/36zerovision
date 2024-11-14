@@ -30,18 +30,20 @@ export class TodoGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   async handleConnection(socket: Socket) {
     try {
-
-      // if the token is not verified, we can catch & disconnect the user
-      const decodedToken = await this.authService.verifyJwt(socket.handshake.auth.Authorization);
-
-      // if the token is valid, we get the user by id from the database
-      const user: UserI = await this.userService.getOneById(decodedToken.user.id);
+      // if the token is not verified, this will throw and we can catch & disconnect the user
+      const decodedToken = await this.authService.verifyJwt(
+        socket.handshake.auth.Authorization,
+      );
+      // if the token is valid, we get the user by id from our database
+      const user: UserI = await this.userService.getOneById(
+        decodedToken.user.id,
+      );
 
       if (!user) {
         console.log('disconnect user');
         return this.disconnect(socket);
       } else {
-        console.log('uder details: ', user);
+        console.log('do smth', user);
 
         // save the connection of the user in our database
         await this.connectionService.create({
