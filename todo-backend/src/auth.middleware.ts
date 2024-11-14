@@ -27,7 +27,7 @@ import {
         // throws error if the token is not valid
         const decodedToken = await this.authService.verifyJwt(tokenArray[1]);
   
-        // makes sure that the user is not deleted
+        // makes sure the user is not deleted
         // and makes sure no props changed during the time that the jwt was issued to the user
         const user: UserI = await this.userService.getOneById(
           decodedToken.user.id,

@@ -24,7 +24,7 @@ export class UserService {
   ) { }
 
   login(user: UserI): Observable<LoginResponseI> {
-    return this.httpClient.post<LoginResponseI>('api/users/login', user).pipe(
+    return this.httpClient.post<LoginResponseI>('api/user/login', user).pipe(
       tap((res: LoginResponseI) => localStorage.setItem(LOCALSTORAGE_KEY_NESTJS_TODO_APP, res.access_token)),
       tap(() => this.snackbar.open('Login Successfull', 'Close', snackBarConfig)),
       catchError(e => {
@@ -35,7 +35,7 @@ export class UserService {
   }
 
   register(user: UserI): Observable<UserI> {
-    return this.httpClient.post<UserI>('api/users', user).pipe(
+    return this.httpClient.post<UserI>('api/user', user).pipe(
      tap((createdUser: UserI) => this.snackbar.open(`User ${createdUser.username} was created`, 'Close', snackBarConfig)),
      catchError(e => {
        this.snackbar.open(`User could not be created because: ${e.error.message}`, 'Close', snackBarConfig);

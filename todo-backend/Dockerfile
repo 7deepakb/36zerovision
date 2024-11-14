@@ -1,8 +1,7 @@
-# Versions for the docker image
-
-# For Development servers
+# Specify Node Version and Image
 FROM node:16.16.0 AS development
 
+# Specify the working dir
 WORKDIR /deepak/src/app
 
 COPY package*.json ./
@@ -14,7 +13,6 @@ RUN npm run build
 
 EXPOSE 3000
 
-# For Production servers
 FROM node:16.16.0 as production
 
 ARG NODE_ENV=production

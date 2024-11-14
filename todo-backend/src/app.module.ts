@@ -31,11 +31,11 @@ export class AppModule implements NestModule {
       .apply(AuthMiddleware)
       .exclude(
         {
-          path: '/api/users',
+          path: '/api/user',
           method: RequestMethod.POST,
         },
         {
-          path: '/api/users/login',
+          path: '/api/user/login',
           method: RequestMethod.POST,
         },
       )
